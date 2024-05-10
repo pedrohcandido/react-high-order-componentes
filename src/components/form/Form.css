@@ -1,0 +1,16 @@
+.app{
+	position: absolute;
+	top: 50%;
+	left: 30%;
+	transform: translate(-50%,-50%);
+	background-color: #363636;
+	padding: 15px;
+	border-radius: 15px;
+	width: 20%;
+	height: 55%;
+	color: white
+}
+#name,#age,#civilStatus,#docType, #document { 
+	width: 100%;
+  clear: both;
+}
