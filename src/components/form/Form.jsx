@@ -52,9 +52,8 @@ class Form extends React.Component {
 				return
 			}
 		} else if (!cnpj.isValid(cpfCnpj)) {
-			console.log("enteri")
 				this.setState({ isError: true})
-
+				return
 		}
 		
 		this.setState({_name: this.state.name})
@@ -69,7 +68,7 @@ class Form extends React.Component {
 		this.setState({gender: ""})
 		this.setState({civilStatus: ""})
 		this.setState({docType: ""})
-		this.setState({document: ""})
+		//this.setState({document: ""})
 
 		document.getElementById("myForm").reset()
 	};
