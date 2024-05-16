@@ -51,11 +51,14 @@ class Form extends React.Component {
 				this.setState({ isError: true})
 				return
 			}
-		} else if (!cnpj.isValid(cpfCnpj)) {
+		} 
+		if ( this.state.docType === "CNPJ" ) {
+			if( !cnpj.isValid(cpfCnpj) ) {
 				this.setState({ isError: true})
 				return
+			}
 		}
-		
+
 		this.setState({_name: this.state.name})
 		this.setState({_age: this.state.age})
 		this.setState({_gender: this.state.gender})
@@ -67,7 +70,7 @@ class Form extends React.Component {
 		this.setState({age: ""})
 		this.setState({gender: ""})
 		this.setState({civilStatus: ""})
-		this.setState({docType: ""})
+		//this.setState({docType: ""})
 		//this.setState({document: ""})
 
 		document.getElementById("myForm").reset()
@@ -165,7 +168,7 @@ class Form extends React.Component {
 					{this.state.isSend && (
 						<>
 						{ this.state.isError && <p>O CPF/CNPJ Digitado é Inválido!</p> }
-						{ !this.state.isError && this.state.document.length > 0 && <p>Formulário Enviado com Sucesso!</p>}
+						{ !this.state.isError && <p>Formulário Enviado com Sucesso!</p>}
 						</>
 					)}
 
