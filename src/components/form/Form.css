@@ -7,10 +7,24 @@
 	padding: 15px;
 	border-radius: 15px;
 	width: 20%;
-	height: 55%;
+	height: 60%;
 	color: white
 }
 #name,#age,#civilStatus,#docType, #document { 
 	width: 100%;
   clear: both;
+}
+.sortEarliest{
+	position: absolute;
+	top: 21%;
+	left: 66%;
+	transform: translate(-50%,-50%);
+	font-size: 25px;
+}
+.sortLatest{
+	position: absolute;
+	top: 21%;
+	left: 69%;
+	transform: translate(-50%,-50%);
+	font-size: 25px;
 }

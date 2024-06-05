@@ -1,8 +1,8 @@
 import React from "react";
 import './Form.css'
-import FormAnswer from '../formAnswer'
 import Input from "../input";
 import { cpf, cnpj } from 'cpf-cnpj-validator'
+import AnswerList from "../answerList";
 
 class Form extends React.Component {
 
@@ -27,9 +27,11 @@ class Form extends React.Component {
 			isError: false,
 			isValid: false,
 
-			isSend: false
+			isSend: false,
+
+			answers: []
 		}
-		this._teste = React.createRef();
+	
 	}
 
 	handleChange = (event) => {
@@ -59,6 +61,21 @@ class Form extends React.Component {
 			}
 		}
 
+		
+		const newObj = { id: this.state.answers.length + 1, 
+									   name: this.state.name,
+										 age: this.state.age,
+										 gender: this.state.gender,
+										 civilStatus: this.state.civilStatus,
+										 docType: this.state.docType,
+										 document: this.state.document}
+		const newArray = [...this.state.answers, newObj]
+
+		this.setState({answers: newArray});
+
+		console.log(this.state.answers)
+		
+
 		this.setState({_name: this.state.name})
 		this.setState({_age: this.state.age})
 		this.setState({_gender: this.state.gender})
@@ -74,6 +91,28 @@ class Form extends React.Component {
 		//this.setState({document: ""})
 
 		document.getElementById("myForm").reset()
+	}
+
+	sortByLatest = () => {
+		const sortedAnswers = this.state.answers.sort( (a, b) => {
+			return b.id - a.id;
+		});
+		this.setState({answers: [...sortedAnswers]})
+	}
+
+	sortByEarliest = () => {
+		const sortedAnswers = this.state.answers.sort( (a, b) => {
+			return  a.id - b.id;
+		});
+		this.setState({answers: [...sortedAnswers]})
+	}
+
+	removeAnswer(e) {
+		if ( ! e) {
+			this.setState({answers: this.state.answers.filter(function(answer) { 
+        return answer !== e
+    })});
+		}
 	};
 
 	render() {
@@ -129,7 +168,8 @@ class Form extends React.Component {
 						<select name="civilStatus" 
 										id="civilStatus"
 										onChange={(event) => this.setState({ civilStatus: event.target.value})}
-										required>
+										//required
+										>
 							<option selected value="">Selecione uma opção</option>
 							<option value="Solteiro">Solteiro</option>
 							<option value="Casado">Casado</option>
@@ -176,15 +216,12 @@ class Form extends React.Component {
 				</form>
 
 			</div>
-			<FormAnswer 
-									_name={this.state._name}
-									_age={this.state._age}
-									_gender={this.state._gender}
-									_civilStatus={this.state._civilStatus}
-									_docType={this.state._docType}
-									_document={this.state._document}
-									>
-			</FormAnswer>
+
+			
+			<AnswerList answers={this.state.answers}/>
+			<button className="sortEarliest" onClick={this.sortByLatest}> ⬆ </button>
+			<button className="sortLatest" onClick={this.sortByEarliest}> ⬇ </button>
+
 			</>
 		)
 	}
