@@ -1,8 +1,8 @@
-# Formulário ReactJS
+# Formulário / Listagem ReactJS
 
 ## 🚀 Funcionalidades
 
-Formulário para exibir os dados enviados na tabela ao lado com validação no campo CPF.
+Listagem dos formulários enviados com função de ordenar e exibir os dados detalhados de cada envio.
 
 ### 📋 Pré-requisitos
 
