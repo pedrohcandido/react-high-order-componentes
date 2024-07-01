@@ -2,7 +2,6 @@ import React from "react";
 import './Form.css'
 import Input from "../input";
 import { cpf, cnpj } from 'cpf-cnpj-validator'
-import AnswerList from "../answerList";
 
 class Form extends React.Component {
 
@@ -16,13 +15,6 @@ class Form extends React.Component {
 			civilStatus: "",
 			docType: "",
 			document: "",
-
-			_name: "",
-			_age: null,
-			_gender: "",
-			_civilStatus: "",
-			_docType: "",
-			_document: "",
 
 			isError: false,
 			isValid: false,
@@ -61,28 +53,6 @@ class Form extends React.Component {
 			}
 		}
 
-		
-		const newObj = { id: this.state.answers.length + 1, 
-									   name: this.state.name,
-										 age: this.state.age,
-										 gender: this.state.gender,
-										 civilStatus: this.state.civilStatus,
-										 docType: this.state.docType,
-										 document: this.state.document}
-		const newArray = [...this.state.answers, newObj]
-
-		this.setState({answers: newArray});
-
-		console.log(this.state.answers)
-		
-
-		this.setState({_name: this.state.name})
-		this.setState({_age: this.state.age})
-		this.setState({_gender: this.state.gender})
-		this.setState({_civilStatus: this.state.civilStatus})
-		this.setState({_docType: this.state.docType})
-		this.setState({_document: this.state.document})
-
 		this.setState({name: ""})
 		this.setState({age: ""})
 		this.setState({gender: ""})
@@ -93,32 +63,11 @@ class Form extends React.Component {
 		document.getElementById("myForm").reset()
 	}
 
-	sortByLatest = () => {
-		const sortedAnswers = this.state.answers.sort( (a, b) => {
-			return b.id - a.id;
-		});
-		this.setState({answers: [...sortedAnswers]})
-	}
-
-	sortByEarliest = () => {
-		const sortedAnswers = this.state.answers.sort( (a, b) => {
-			return  a.id - b.id;
-		});
-		this.setState({answers: [...sortedAnswers]})
-	}
-
-	removeAnswer(e) {
-		if ( ! e) {
-			this.setState({answers: this.state.answers.filter(function(answer) { 
-        return answer !== e
-    })});
-		}
-	};
-
 	render() {
 		return (
 			<>
 			<div className="app">
+				<h3>Questionário</h3>
 				<form id="myForm" onSubmit={this.handleSubmit.bind(this)}>
 					<Input label={"Nome"}
 									type={"text"}
@@ -216,11 +165,6 @@ class Form extends React.Component {
 				</form>
 
 			</div>
-
-			
-			<AnswerList answers={this.state.answers}/>
-			<button className="sortEarliest" onClick={this.sortByLatest}> ⬆ </button>
-			<button className="sortLatest" onClick={this.sortByEarliest}> ⬇ </button>
 
 			</>
 		)
