@@ -1,5 +1,6 @@
 import React from "react";
 import './Input.css'
+import InputLength from "../inputLength";
 
 const Input = (props) => {
 	return(
@@ -13,10 +14,20 @@ const Input = (props) => {
 									id={props.id}
 									value={props.value}
 									onChange={props.onChange}
+									min={props.label === "Idade" ? 18 : 0}
+									minLength={props.label === "Nome" ? 10 
+													 : props.label === "Descrição Banco" ? 10
+													 : props.label === "Código Banco" ? 3
+													 : props.label === "Código Agência" ? 6 : 0
+													}
 									required
 									>
 						</input>
-						<br/><br/>
+						<InputLength
+												inputName={props.label}
+												value={props.value}
+						/> 
+						
 				</>
 				) :
 				(
@@ -26,7 +37,7 @@ const Input = (props) => {
 								 value={props.value}
 								 onChange={props.onChange}
 								 name={props.name}
-								 required
+								//  required
 								 >
 					</input>
 					<label for={props.for}>{props.label}</label>
